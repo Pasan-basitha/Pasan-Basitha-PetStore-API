@@ -1,4 +1,4 @@
-# MicroProfile generated Application
+# Middleware Architecture Assignment - 18001637
 
 ## Introduction
 
@@ -8,89 +8,42 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
-## Packaging and running the application
 
-If you want to build an _??ber-jar_, execute the following command:
 
-    ./gradlew build -Dquarkus.package.type=uber-jar
+## 1. How to build and/or deploy the API
 
-To run the application:
+##i. Build the project
 
-    java -jar build/petstore-runner.jar
-
-The application can be also packaged using simple:
 
     ./gradlew build
 
-It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
-Be aware that it is not an _??ber-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
 
-To launch the test page, open your browser at the following URL
+## ii. Deploy and run the project
 
-    http://localhost:8080/index.html
+    java -jar build/PetStore-runner.jar
 
-## Running the application in dev mode
+#2. How to run test suite
+     
 
+    ./gradlew test
+#3. How to run a CURL/WGET command to test the APIs once deployed
 
-You can run your application in dev mode that enables live coding using:
+###Pets
+###View all pets
 
-    ./gradlew quarkusDev
+    curl -XGET -H "Content-type: application/json" 'http://localhost:8080/data/pets'
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+###Add new pet
 
-## Creating a native executable
+     curl -XPOST -H "Content-type: application/json" -d '{"age": 5,"name":"Bruzer","type":"Dog"}' 'http://localhost:8080/data/pets/add'
 
-Mind having GRAALVM_HOME set to your Mandrel or GraalVM installation.
+###Update a pet
+     curl -XPUT -H "Content-type: application/json" -d '{"age":9}' 'http://localhost:8080/data/pets/edit/3'
 
-You can create a native executable using:
+###Delete a pet
+     curl -XDELETE -H "Content-type: application/json" 'http://localhost:8080/data/pets/delete/1'
 
-    ./gradlew build -Dquarkus.package.type=native
+###Search for a pet by id
+      curl -XGET -H "Content-type: application/json" 'http://localhost:8080/data/pets/search?id=1'
 
-Or, if you don't have [Mandrel](https://github.com/graalvm/mandrel/releases/) or
-[GraalVM](https://github.com/graalvm/graalvm-ce-builds/releases) installed, you can run the native executable
-build in a container using:
-
-    ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
-
-Or to use Mandrel distribution:
-
-    ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel:20.3-java11
-
-You can then execute your native executable with:
-
-    ./build/petstore-runner
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
-
-## Specification examples
-
-By default, there is always the creation of a JAX-RS application class to define the path on which the JAX-RS endpoints are available.
-
-Also, a simple Hello world endpoint is created, have a look at the class **HelloController**.
-
-More information on MicroProfile can be found [here](https://microprofile.io/)
-
-### Config
-
-Configuration of your application parameters. Specification [here](https://microprofile.io/project/eclipse/microprofile-config)
-
-The example class **ConfigTestController** shows you how to inject a configuration parameter and how you can retrieve it programmatically.
-
-### Health
-
-The health status can be used to determine if the 'computing node' needs to be discarded/restarted or not. Specification [here](https://microprofile.io/project/eclipse/microprofile-health)
-
-The class **ServiceHealthCheck** contains an example of a custom check which can be integrated to health status checks of the instance.  The index page contains a link to the status data.
-
-### Metrics
-
-The Metrics exports _Telemetric_ data in a uniform way of system and custom resources. Specification [here](https://microprofile.io/project/eclipse/microprofile-metrics)
-
-The example class **MetricController** contains an example how you can measure the execution time of a request.  The index page also contains a link to the metric page (with all metric info)
-
-### Open API
-
-Exposes the information about your endpoints in the format of the OpenAPI v3 specification. Specification [here](https://microprofile.io/project/eclipse/microprofile-open-api)
-
-The index page contains a link to the OpenAPI information of your endpoints.
 
