@@ -45,8 +45,8 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
      curl -XDELETE -H "Content-type: application/json" 'http://localhost:8080/data/pets/delete/1'
 
-###Search for a pet by id
+###Search for a pet by age
 
-      curl -XGET -H "Content-type: application/json" 'http://localhost:8080/data/pets/search?id=1'
+      curl -XGET -H "Content-type: application/json" 'http://localhost:8080/data/pets/search?age=2'
 
 
