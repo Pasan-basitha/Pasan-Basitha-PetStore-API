@@ -38,12 +38,15 @@ If you want to learn more about Quarkus, please visit its website: https://quark
      curl -XPOST -H "Content-type: application/json" -d '{"age": 5,"name":"Bruzer","type":"Dog"}' 'http://localhost:8080/data/pets/add'
 
 ###Update a pet
+
      curl -XPUT -H "Content-type: application/json" -d '{"age":9}' 'http://localhost:8080/data/pets/edit/3'
 
 ###Delete a pet
+
      curl -XDELETE -H "Content-type: application/json" 'http://localhost:8080/data/pets/delete/1'
 
 ###Search for a pet by id
+
       curl -XGET -H "Content-type: application/json" 'http://localhost:8080/data/pets/search?id=1'
 
 
